@@ -1,31 +1,49 @@
-//consts 
 
-let cells = Array.from(document.querySelectorAll(".cell"));
+
+//consts 
+const cells = Array.from(document.querySelectorAll(".cell"));
 const gridcontainer = document.querySelector(".gridcontainer");
 let currentArray = Array.from(document.querySelector(".gridcontainer"));
 
 
-const gameboard = (e) => {
-    
+//GameBoard controller
+const gameboard = () => {
+
+    let currentArray = [];
+
     const boardReset =() => {
         cells.forEach(cell => cell.innerText = ".");
     };
 
-       return {boardReset};
+    const updateArray = (marker) => {currentArray.push(marker)};
 
-}
+       return {boardReset, updateArray, currentArray};
+};
 
-const player = (name) => {
+
+//instantiate gameBoard
+const board = gameboard();
+
+//Player Controller
+const player = (name, marker) => {
+
+    marker
     const getName = () => name;
 
     const Selection = () => { 
-        gridcontainer.addEventListener("click", (e) => {console.log(e.target)});
+        gridcontainer.addEventListener("click", (e) => {
+            //console.log(e.target)
+            if (e.target.innerText !== "Player Choice"){
+            e.target.innerText = (`Player Choice`)
+                board.updateArray(marker);
+        } else return console.log("already chosen")});
+
     };
     return {getName, Selection}
-}
+};
 
-
-const connor = player("connor").Selection()
+//instantiante Player
+const connor = player("connor", "x").Selection()
 
 
 
