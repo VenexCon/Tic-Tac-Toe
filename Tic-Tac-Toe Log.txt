@@ -1,0 +1,38 @@
+Tic-Tac-Toe Log 
+
+We need a Gameboard obj and Player objects (x2); 
+
+Psuedo Code 
+
+// Need a board 
+/ Create a 3x3 grid 
+/ Create EL for Grid 
+/ When clicked, a isAWinner () needs to be called
+/ IT should iterate the gameboard and check for a winner
+/ current gameboard, needs to be compared against a winning gameboard (array); 
+/ if winner the gameboard needs to be cleared and scores logged up to /5; 
+/ Board needs to take inputs from players and act as a middle man 
+Board should contain the Board, array, winnder function and export actions. 
+
+
+
+// players 
+/ Each player needs a name Property 
+/ Each player needs an assigned token 
+/ Each player needs a score counter 
+/ scorecounter displayed in DOM
+/ The isAWinner() needs to check who placed what pieces in what position
+/ iterate over the gameboard and then return nothing if no winner. 
+/ if winner, clear gameboard and increment score. 
+
+
+// Game flow 
+/ Keep track of an array 
+/ react to other inputs i.e. players actions, gameboard calls and asuch. 
+
+
+Example 
+
+Player 1 input -> Gamboard takes a parameter, inputs the argument against a comparison array, the array then compares to the winnign array and returns 
+If (the player does not win), it then returns the next players go. 
+

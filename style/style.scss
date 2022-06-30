@@ -1,0 +1,56 @@
+//imports 
+
+@import "var";
+
+
+
+.player-choice {
+    border: 2px solid black;
+    width: fit-content;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+    padding: 2rem;
+    
+    .player1 {
+        border: 2px dashed red;
+        padding: 1rem;
+    }
+
+    .player2 {
+        border: 2px dashed red;
+        padding: 1rem;
+    }
+}
+
+
+
+
+
+
+
+.gridcontainer {
+    border: 2px solid $cell-background;
+    height: 40vw;
+    width: 40vw;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr) ;
+    column-gap: 0.5rem;
+    row-gap: 0.5rem;
+    background-color: grey;
+    justify-content: center;
+
+    .cell {
+        border: 1px solid $cell-text;
+        background-color: $cell-background;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        
+    }
+}
+
