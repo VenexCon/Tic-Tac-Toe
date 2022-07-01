@@ -5,7 +5,7 @@ const gridcontainer = document.querySelector(".gridcontainer");
 let currentArray = Array.from(document.querySelector(".gridcontainer"));
 const buttons = document.querySelector(".buttonDiv");
 
-let playersGo = "player1"
+
 
 //Display Controller 
 
@@ -25,7 +25,6 @@ const DisplayController = function () {
             if(e.target.id === "resetGame") {
                 const cells = Array.from(document.querySelectorAll(".cell"))
                 cells.forEach(cell => cell.innerText = `.`);
-                return playersGo = "player1"
                     };
             }) 
     };
@@ -38,7 +37,7 @@ const reset = DisplayController().BoardReset();
 const start= DisplayController().ConstructDivs();
 
 const player = (name, marker) => {
-
+    
     this.name = name;
     this.marker = marker;
     const getName = () => name;
@@ -47,18 +46,21 @@ const player = (name, marker) => {
     };
 
 
-//GameBoard controller
-const gameboard = (() => {
-
-    this.currentArray = [];
-    const player1 = player("connor", "x");
-    const player2 = player("Sona","o");
-
-    const togglePlayer = () => {if (playersGo ==="player1"){
+const togglePlayer = () => {if (this.playersGo ==="player1"){
         return playersGo = "player2"
     } else if(playersGo === "player2"){
         return playersGo = "player1"
     }}
+
+//GameBoard controller
+const gameboard = (() => {
+
+    this.playersGo = "player1"
+    this.currentArray = [];
+    const player1 = player("connor", "x");
+    const player2 = player("Sona","o");
+
+    Object.assign(gameboard, togglePlayer);
     
     const updateArray = (marker) => {currentArray.push(marker)};
 
