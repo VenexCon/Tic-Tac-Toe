@@ -1,5 +1,25 @@
-.player-choice {
-  border: 2px solid black;
+.nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
+}
+
+.nav h4 {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  text-decoration: underline;
+}
+
+.nav .player-choice {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -15,14 +35,13 @@
   padding: 2rem;
 }
 
-.player-choice .player1 {
-  border: 2px dashed red;
+.nav .player-choice button {
   padding: 1rem;
+  font-size: 2rem;
 }
 
-.player-choice .player2 {
-  border: 2px dashed red;
-  padding: 1rem;
+.nav .name {
+  margin-bottom: 1rem;
 }
 
 .gridcontainer {
@@ -36,9 +55,6 @@
       grid-template-columns: repeat(3, 1fr);
   -ms-grid-rows: (1fr)[3];
       grid-template-rows: repeat(3, 1fr);
-  -webkit-column-gap: 0.5rem;
-          column-gap: 0.5rem;
-  row-gap: 0.5rem;
   background-color: grey;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -57,5 +73,35 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  font-size: 3rem;
+}
+
+.buttonDiv {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 3rem;
+  margin: 2rem auto;
+}
+
+.buttonDiv button {
+  border-radius: 0.25rem;
+  -webkit-box-shadow: 3px;
+          box-shadow: 3px;
+  font-size: 2rem;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.buttonDiv button:hover {
+  background-color: #0a0a0a;
+  color: #ffff;
 }
 /*# sourceMappingURL=style.css.map */

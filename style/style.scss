@@ -4,30 +4,41 @@
 
 
 
-.player-choice {
-    border: 2px solid black;
+
+.nav {
+    //border: 2px solid black;
+    display: flex;
+    flex-direction: column;
     width: fit-content;
     margin: auto;
-    display: flex;
-    flex-direction: row;
-    gap: 4rem;
-    padding: 2rem;
-    
-    .player1 {
-        border: 2px dashed red;
-        padding: 1rem;
+
+    h4 {
+        width: fit-content;
+        //border: 2px solid red;
+        text-decoration: underline;
     }
 
-    .player2 {
-        border: 2px dashed red;
-        padding: 1rem;
+    .player-choice {
+        //border: 2px solid black;
+        width: fit-content;
+        margin: auto;
+        display: flex;
+        flex-direction: row;
+        gap: 4rem;
+        padding: 2rem;
+
+        button {
+            padding: 1rem;
+            font-size: 2rem;
+        }
+        
+    
+    };
+
+    .name {
+        margin-bottom:1rem;
     }
 }
-
-
-
-
-
 
 
 .gridcontainer {
@@ -38,8 +49,8 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr) ;
-    column-gap: 0.5rem;
-    row-gap: 0.5rem;
+    //column-gap: 0.5rem;
+    //row-gap: 0.5rem;
     background-color: grey;
     justify-content: center;
 
@@ -49,8 +60,33 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        font-size: 3rem;
         
         
     }
-}
+};
+
+
+.buttonDiv {
+    //border: solid 2px black;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    margin: 2rem auto;
+
+    button { 
+        border-radius: 0.25rem;
+        box-shadow: 3px;
+        font-size: 2rem;
+        transition: 0.4s;
+    }
+
+    button:hover{
+        background-color: rgb(10, 10, 10);
+        color: $white;
+    }
+    
+
+};
 
