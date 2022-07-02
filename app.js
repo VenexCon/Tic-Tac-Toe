@@ -8,7 +8,7 @@ const buttons = document.querySelector(".buttonDiv");
 
 
 //Display Controller 
-const DisplayController = function () {
+const DisplayController = (function () {
     
     this.displayStatus = false;
 
@@ -32,12 +32,9 @@ const DisplayController = function () {
     //modular calls
     BoardReset();
     ConstructDivs();
+    
+})();
 
-    return {displayStatus}
-}
-
-//Instantiate Display Controllers
-const display = DisplayController();
 
 
 // Player Factory
@@ -55,7 +52,7 @@ const player = (name, marker) => {
 //GameBoard controller
 const gameboard = (() => {
 
-    this.playersGo = "player1"
+    this.playersGo = "player1";
     this.currentArray = [];
     const player1 = player("connor", "x");
     const player2 = player("Sona","o");
