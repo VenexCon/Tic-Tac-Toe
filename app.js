@@ -2,7 +2,6 @@
 
 //consts 
 const gridcontainer = document.querySelector(".gridcontainer");
-//let currentArray = Array.from(document.querySelector(".gridcontainer"));
 const buttons = document.querySelector(".buttonDiv");
 
 
@@ -47,6 +46,12 @@ const player = (name, marker) => {
     return {name, marker}
     };
 
+// Seperates players array;
+    const SeperateArray = (() => {
+        const playerOneArray = currentArray.filter(mark => mark === "x");
+        const playerTwoArray = currentArray.filter(mark => mark === "o" );
+    return {playerOneArray, playerTwoArray} // include reset function
+    })
 
 
 //GameBoard controller
@@ -65,6 +70,9 @@ const gameboard = (() => {
     );
     
     const updateArray = (marker) => {currentArray.push(marker)};
+    const playerOneArray = () => currentArray.filter(mark => mark === "x")
+    const playerTwoArray = () => currentArray.filter(mark => mark === "o" );
+
 
     const Selection = () => {gridcontainer.addEventListener("click", (e) => {
         if (playersGo === "player1"){
@@ -80,11 +88,12 @@ const gameboard = (() => {
     };
     Selection(); // instantiate Selection EL
 
-    return {updateArray, Selection, currentArray};
+    return {updateArray, Selection, currentArray, updateArray, SeperateArray, playerOneArray, playerTwoArray};
 });
 
 
 const game = gameboard();
+
 
 
 
