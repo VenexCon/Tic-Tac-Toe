@@ -43,8 +43,8 @@
 
 .gridcontainer {
     border: 2px solid $cell-background;
-    height: 40vw;
-    width: 40vw;
+    height: 20vw;
+    width:  20vw;
     margin: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
