@@ -4,7 +4,7 @@
 const gridcontainer = document.querySelector(".gridcontainer");
 const buttons = document.querySelector(".buttonDiv");
 const resetBtn = document.getElementById("resetGame");
-
+let   currentArray = [0,1,2,3,4,5,6,7,8];
 
 
 
@@ -37,18 +37,20 @@ const DisplayController = (function () {
             ) 
         };
 
-        const winnerReset = () => {
-            cells = document.querySelectorAll(".cells");
-            cells.forEach(cell => innerText ="");
+        const manualReset = function () {
+            cells = document.querySelectorAll(".cell");
+            cells.forEach(cell => cell.innerText ="");
         }
 
 
         //modular calls
         BoardReset();
         ConstructDivs();
-        return {winnerReset}
-    }
-)();
+        return {manualReset}
+    });
+
+
+const display= DisplayController();
 
 // Player Factory called during gamneBoard() function, two players currently with pre-set values.
 const player = (name, marker) => {
@@ -65,15 +67,13 @@ const player = (name, marker) => {
 const gameboard = (() => {
 
     this.playersGo = "player1";
-    let   currentArray = [0,1,2,3,4,5,6,7,8];
     const player1 = player("connor", "x");
     const player2 = player("Sona","o");
 
     
     // currently unused left in test version
     
-    function clearArray () {return this.currentArray =[0,1,2,3,4,5,6,7,8]}
-        
+    function clearArray () {currentArray =[0,1,2,3,4,5,6,7,8]}
 
     const togglePlayer = (() => {if (this.playersGo ==="player1"){
             return playersGo = "player2"
@@ -110,7 +110,9 @@ const gameboard = (() => {
                 array[3] === array[4] && array[4] === array[6]||
                 array[6] === array[7] && array[7] === array[8]
                     ){console.log(`The winner is ${playersGo}`)
-                    game.clearArray();
+                        clearArray();
+                        display.manualReset();
+                        console.log("clearArray Triggered")
                         return 
                          
                     }
