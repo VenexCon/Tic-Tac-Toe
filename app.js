@@ -1,13 +1,16 @@
 
 
-//consts 
+//DOM Grabbs
 const gridcontainer = document.querySelector(".gridcontainer");
 const buttons = document.querySelector(".buttonDiv");
 const resetBtn = document.getElementById("resetGame");
 
 
 
-//Display Controller 
+
+
+
+//Display Controller , initalised ready for click events
 const DisplayController = (function () {
     
     this.displayStatus = false;
@@ -34,14 +37,20 @@ const DisplayController = (function () {
             ) 
         };
 
+        const winnerReset = () => {
+            cells = document.querySelectorAll(".cells");
+            cells.forEach(cell => innerText ="");
+        }
+
 
         //modular calls
         BoardReset();
         ConstructDivs();
+        return {winnerReset}
     }
 )();
 
-// Player Factory called during gamneBoard().
+// Player Factory called during gamneBoard() function, two players currently with pre-set values.
 const player = (name, marker) => {
     
     this.name = name;
@@ -52,19 +61,19 @@ const player = (name, marker) => {
 };
 
 
-//GameBoard controller.
+//GameBoard controller, this controls the game logic and conditional elements.
 const gameboard = (() => {
 
     this.playersGo = "player1";
-    let currentArray = [0,1,2,3,4,5,6,7,8];
+    let   currentArray = [0,1,2,3,4,5,6,7,8];
     const player1 = player("connor", "x");
     const player2 = player("Sona","o");
 
     
     // currently unused left in test version
-    const playerOneArray = () => currentArray.filter(mark => mark === "x");
-    const playerTwoArray = () => currentArray.filter(mark => mark === "o" );
-    function resetArray () {return this.currentArray = [0,1,2,3,4,5,6,7,8]}
+    
+    function clearArray () {return this.currentArray =[0,1,2,3,4,5,6,7,8]}
+        
 
     const togglePlayer = (() => {if (this.playersGo ==="player1"){
             return playersGo = "player2"
@@ -101,23 +110,19 @@ const gameboard = (() => {
                 array[3] === array[4] && array[4] === array[6]||
                 array[6] === array[7] && array[7] === array[8]
                     ){console.log(`The winner is ${playersGo}`)
-                        //resetArray();
-                        return  ;
+                    game.clearArray();
+                        return 
                          
                     }
             }
         }
     );
 
-    return {Selection, currentArray, playerOneArray, playerTwoArray, resetArray};
+    return {Selection,currentArray,clearArray};
 });
+
 //instantiate gameBoard Object 
 const game = gameboard();
-
-// left standstill as module to be called by gameBoard object.
-
-
-
 
 
 
