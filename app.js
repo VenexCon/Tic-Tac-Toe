@@ -3,6 +3,7 @@
 //consts 
 const gridcontainer = document.querySelector(".gridcontainer");
 const buttons = document.querySelector(".buttonDiv");
+const resetBtn = document.getElementById("resetGame");
 
 
 
@@ -40,7 +41,7 @@ const DisplayController = (function () {
     }
 )();
 
-// Player Factory
+// Player Factory called during gamneBoard().
 const player = (name, marker) => {
     
     this.name = name;
@@ -51,18 +52,19 @@ const player = (name, marker) => {
 };
 
 
-//GameBoard controller
+//GameBoard controller.
 const gameboard = (() => {
 
     this.playersGo = "player1";
-    this.currentArray = [0,1,2,3,4,5,6,7,8];
+    let currentArray = [0,1,2,3,4,5,6,7,8];
     const player1 = player("connor", "x");
     const player2 = player("Sona","o");
 
-    // Refactoring = const updateArray = (marker) => {currentArray.push(marker)};
-
+    
+    // currently unused left in test version
     const playerOneArray = () => currentArray.filter(mark => mark === "x");
     const playerTwoArray = () => currentArray.filter(mark => mark === "o" );
+    function resetArray () {return this.currentArray = [0,1,2,3,4,5,6,7,8]}
 
     const togglePlayer = (() => {if (this.playersGo ==="player1"){
             return playersGo = "player2"
@@ -70,12 +72,6 @@ const gameboard = (() => {
                     return playersGo = "player1"
                 }}
     );
-
-    const draw = (currentArray) => {if(currentArray.every(index => (typeof index === "string")) === "string")  {
-        return console.log("it is a draw")} 
-    };
-
-    //const resetGame = (() => {buttons.addEventListener("click", ()=> currentArray = [0,1,2,3,4,5,6,7,8])})();
     
     const Selection = (() => {gridcontainer.addEventListener("click", (e) => {
         if (playersGo === "player1"){
@@ -95,7 +91,7 @@ const gameboard = (() => {
             }
     )();
 
-    
+    // currently is comparing empty cells - 
     const winnerCheck = ((array) => {if (array.length > 3){
             if (array[0] === array[3] && array[3] === array[6]||
                 array[0] === array[1] && array[1] === array[2]||
@@ -104,18 +100,16 @@ const gameboard = (() => {
                 array[2] === array[4] && array[4] === array[6]||
                 array[3] === array[4] && array[4] === array[6]||
                 array[6] === array[7] && array[7] === array[8]
-                    ){console.log(`The winner is ${playersGo} `)
-                        return true; 
+                    ){console.log(`The winner is ${playersGo}`)
+                        //resetArray();
+                        return  ;
+                         
                     }
             }
         }
     );
 
-
-
-       
-
-    return {Selection, currentArray, playerOneArray, playerTwoArray,draw};
+    return {Selection, currentArray, playerOneArray, playerTwoArray, resetArray};
 });
 //instantiate gameBoard Object 
 const game = gameboard();
