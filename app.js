@@ -31,10 +31,7 @@ const DisplayController = (function () {
     //modular calls
     BoardReset();
     ConstructDivs();
-    
 })();
-
-
 
 // Player Factory
 const player = (name, marker) => {
@@ -46,13 +43,6 @@ const player = (name, marker) => {
     return {name, marker}
     };
 
-// Seperates players array;
-    const SeperateArray = (() => {
-        const playerOneArray = currentArray.filter(mark => mark === "x");
-        const playerTwoArray = currentArray.filter(mark => mark === "o" );
-    return {playerOneArray, playerTwoArray} // include reset function
-    })
-
 
 //GameBoard controller
 const gameboard = (() => {
@@ -62,39 +52,57 @@ const gameboard = (() => {
     const player1 = player("connor", "x");
     const player2 = player("Sona","o");
 
+    // Refactoring = const updateArray = (marker) => {currentArray.push(marker)};
+
+    const playerOneArray = () => currentArray.filter(mark => mark === "x");
+    const playerTwoArray = () => currentArray.filter(mark => mark === "o" );
+
     const togglePlayer = (() => {if (this.playersGo ==="player1"){
             return playersGo = "player2"
         } else if(playersGo === "player2"){
             return playersGo = "player1"
         }}
     );
+
+    const resetGame = (() => {buttons.addEventListener("click", ()=> currentArray = [])})();
     
-    const updateArray = (marker) => {currentArray.push(marker)};
-    const playerOneArray = () => currentArray.filter(mark => mark === "x")
-    const playerTwoArray = () => currentArray.filter(mark => mark === "o" );
-
-
-    const Selection = () => {gridcontainer.addEventListener("click", (e) => {
+    const Selection = (() => {gridcontainer.addEventListener("click", (e) => {
         if (playersGo === "player1"){
-        e.target.innerText = (player1.marker)
-            updateArray(player1.marker);
-            return togglePlayer();
+            e.target.innerText = (player1.marker)
+            togglePlayer()
+            return currentArray[e.target.getAttribute("index")] = player1.marker;
+            
 
          } else if (playersGo ="player2"){
+            togglePlayer();
             e.target.innerText = (player2.marker)
-            updateArray(player2.marker);
-            return togglePlayer();
-    }})
-    };
-    Selection(); // instantiate Selection EL
+            currentArray[e.target.getAttribute("index")] = player2.marker;}
+        })
+    })();
 
-    return {updateArray, Selection, currentArray, updateArray, SeperateArray, playerOneArray, playerTwoArray};
+     
+
+    return {Selection, currentArray, playerOneArray, playerTwoArray, resetGame};
 });
-
-
+//instantiate gameBoard Object 
 const game = gameboard();
 
-
+// left standstill as module to be called by gameBoard object.
+const winnerCheck = ((array) => { if (array.length > 3){
+    if (array[0] === array[3] && array[3] === array[6]||
+        array[0] === array[1] && array[1] === array[2]||
+        array[0] === array[4] && array[4] === array[8]||
+        array[1] === array[4] && array[4] === array[7]||
+        array[2] === array[4] && array[4] === array[6]||
+        array[3] === array[4] && array[4] === array[6]||
+        array[6] === array[7] && array[7] === array[8]
+        ){
+            console.log("winner")
+            return true; 
+        } else console.log("Draw")
+            return false;
+        }
+  });
 
 
 

@@ -36,3 +36,12 @@ Example
 Player 1 input -> Gamboard takes a parameter, inputs the argument against a comparison array, the array then compares to the winnign array and returns 
 If (the player does not win), it then returns the next players go. 
 
+Array sorting 
+const playerOneArray = currentArray.filter(mark => mark === player1.marker); 
+const playerTwoArray = currentArray.filter(mark => mark === player2.marker); 
+
+Take the (player.marker & e.target.getAttribute("index); 
+
+0-1-2
+3-4-5
+6-7-8
