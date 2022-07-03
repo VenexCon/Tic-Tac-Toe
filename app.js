@@ -7,15 +7,16 @@ const resetBtn = document.getElementById("resetGame");
 let currentArray = [0,1,2,3,4,5,6,7,8];
 
 
-
-
 const clearArray = () => {return currentArray = [0,1,2,3,4,5,6,7,8];}
 
 
 //Display Controller , initalised ready for click events
 const DisplayController = (function () {
+
+    //display Consts
+    const announcementBox = document.getElementById("announcements");
     
-   displayStatus = false;
+    displayStatus = false; // used for ensuring the start button is clicked once.
 
     const ConstructDivs = () => {buttons.addEventListener("click", (e) => {
         if(e.target.id === "startGame" && this.displayStatus === false){
@@ -44,11 +45,18 @@ const DisplayController = (function () {
         cells.forEach(cell => cell.innerText ="");
     };
 
+    const announcements = () => {
+        announcementBox.innerText = `The Winner is ${playersGo}!, congratulations!`
+    }
 
-        //modular calls
-        BoardReset();
-        ConstructDivs();
-        return {manualReset}
+    const resetDisplay =() => {
+        announcementBox.innerText = `It Is ${playersGo}'s Go`;
+    }
+
+    //modular calls
+    BoardReset();
+    ConstructDivs();
+    return {manualReset, announcements, resetDisplay}
     });
 
     //instantiate gameBoard
@@ -105,7 +113,7 @@ const gameboard = (() => {
                     }
                 )
             }
-    )();
+    ); Selection();
 
     // currently is comparing empty cells - 
     const winnerCheck = ((array) => {
@@ -117,14 +125,15 @@ const gameboard = (() => {
                 array[2] === array[5] && array[5] === array[8]||
                 array[3] === array[4] && array[4] === array[5]||
                 array[6] === array[7] && array[7] === array[8]
-                    ){console.log(`The winner is ${playersGo}, game will reset in 6 seconds`)
-                        setTimeout(clearArray,3000)
-                        setTimeout(display.manualReset, 3000)
-                        console.log("clearArray Triggered")
-                        return true;
+                    ){
+                        display.announcements();
+                            setTimeout(clearArray,3000)
+                                setTimeout(display.manualReset, 3000)
+                                    console.log("array Reset");
+                                        setTimeout (display.resetDisplay, 3000)
+                                            return true;
                          
-                    } console.log("false");
-                            return false; 
+                    } return false; 
             }
         
     );
@@ -137,7 +146,8 @@ const gameboard = (() => {
         } return console.log("no draw yet");
     }
 
-    return {Selection,};
+
+    return {Selection, playersGo, announcements};
 });
 
 //instantiate gameBoard Object 

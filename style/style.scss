@@ -12,11 +12,13 @@
     width: fit-content;
     margin: auto;
 
-    h4 {
-        width: fit-content;
-        //border: 2px solid red;
-        text-decoration: underline;
+    #announcments {
+            width: fit-content;
+            font-size: 4rem;
+            font-weight: bold;
     }
+
+  
 
     .player-choice {
         //border: 2px solid black;

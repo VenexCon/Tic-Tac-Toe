@@ -12,11 +12,12 @@
   margin: auto;
 }
 
-.nav h4 {
+.nav #announcments {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  text-decoration: underline;
+  font-size: 4rem;
+  font-weight: bold;
 }
 
 .nav .player-choice {
