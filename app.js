@@ -35,6 +35,7 @@ const DisplayController = (function () {
             if(e.target.id === "resetGame") {
                 const cells = Array.from(document.querySelectorAll(".cell"))
                     cells.forEach(cell => cell.innerText = ``)
+                    clearArray();
                 };
             }
         ) 
