@@ -1,5 +1,5 @@
 body {
-  background-color: rgba(18, 191, 221, 0.877);
+  background-color: white;
 }
 
 .title-Div {
@@ -7,6 +7,10 @@ body {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+}
+
+.title-Div h1 {
+  color: #2e2d2c;
 }
 
 .nav {
@@ -34,17 +38,18 @@ body {
   font-weight: bold;
   padding: 0;
   margin: 0;
+  color: #0509ff;
 }
 
 .nav #active-player {
   text-align: center;
-  color: #a50a0a;
+  color: #0509ff;
 }
 
 .gridcontainer {
   border: 2px solid #ffff;
-  height: 20vw;
-  width: 20vw;
+  height: 30vw;
+  width: 30vw;
   margin: auto;
   display: -ms-grid;
   display: grid;
@@ -70,7 +75,7 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  font-size: 3rem;
+  font-size: 4rem;
 }
 
 .buttonDiv {

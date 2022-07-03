@@ -3,12 +3,16 @@
 @import "var";
 
 body {
-    background-color: rgba(18, 191, 221, 0.877);
+    background-color: $body-background;
 }
 
 .title-Div {
     margin: 4rem auto;
     width: fit-content;
+
+    h1 {
+        color:$title-color;
+    }
 }
 
 .nav {
@@ -25,12 +29,13 @@ body {
             font-weight: bold;
             padding: 0;
             margin: 0;
+            color: $APText;
         }
 
     #active-player {
         //border: 2px solid black;
         text-align: center;
-        color: $red;
+        color: $APText;
     }
 
 }
@@ -38,8 +43,8 @@ body {
 
 .gridcontainer {
     border: 2px solid $cell-background;
-    height: 20vw;
-    width:  20vw;
+    height: 30vw;
+    width:  30vw;
     margin: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -55,7 +60,7 @@ body {
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 3rem;
+        font-size: 4rem;
     }
 };
 

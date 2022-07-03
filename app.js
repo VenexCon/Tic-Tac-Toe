@@ -56,7 +56,7 @@ const DisplayController = (function () {
     }
 
     const resetDisplay =() => {
-        announcementBox.innerText = `It Is ${playersGo}'s Go`;
+        announcementBox.innerText = `Best of Luck!`;
     }
 
     const activePlayer = () => {
@@ -108,7 +108,7 @@ const gameboard = (() => {
     
     const Selection = (() => {gridcontainer.addEventListener("click", (e) => {
         if (playersGo === "player1"){
-            if (e.target.innerText === "");{
+            if (e.target.value === undefined);{
             currentArray[e.target.getAttribute("index")] = player1.marker;
                 e.target.innerText = (player1.marker)
                     winnerCheck(currentArray);
@@ -119,7 +119,7 @@ const gameboard = (() => {
                         }
 
         } else if (playersGo ="player2"){
-            if (e.target.innerText === "");{
+            if (e.target.value === undefined);{
             currentArray[e.target.getAttribute("index")] = player2.marker;
                e.target.innerText = (player2.marker)
                     winnerCheck(currentArray);
