@@ -7,6 +7,8 @@ const resetBtn = document.getElementById("resetGame");
 let currentArray = [0,1,2,3,4,5,6,7,8];
 
 
+
+
 const clearArray = () => {return currentArray = [0,1,2,3,4,5,6,7,8];}
 
 
@@ -58,6 +60,7 @@ const player = (name, marker) => {
     
     this.name = name;
     this.marker = marker;
+    score = 0;
     const getName = () => name;
         return {name, marker}
 };
@@ -71,25 +74,32 @@ const gameboard = (() => {
     const player1 = player("connor", "x");
     const player2 = player("Sona","o");
 
-
+    //is called in selection function
     const togglePlayer = (() => {if (this.playersGo ==="player1"){
             return playersGo = "player2"
                 } else if(playersGo === "player2"){
                     return playersGo = "player1"
                 }}
     );
+
+    function completeGrid(index) {return typeof index ==="string"};
+    const isDraw = () => {let array = currentArray; return array.every(completeGrid);};
+
+    
     
     const Selection = (() => {gridcontainer.addEventListener("click", (e) => {
         if (playersGo === "player1"){
             currentArray[e.target.getAttribute("index")] = player1.marker;
                 e.target.innerText = (player1.marker)
                     winnerCheck(currentArray);
+                        DrawCheck();
                             return togglePlayer()
 
         } else if (playersGo ="player2"){
             currentArray[e.target.getAttribute("index")] = player2.marker;
                e.target.innerText = (player2.marker)
                     winnerCheck(currentArray);
+                        DrawCheck();
                             return togglePlayer();
                         }
                     }
@@ -104,28 +114,34 @@ const gameboard = (() => {
                 array[0] === array[4] && array[4] === array[8]||
                 array[1] === array[4] && array[4] === array[7]||
                 array[2] === array[4] && array[4] === array[6]||
+                array[2] === array[5] && array[5] === array[8]||
                 array[3] === array[4] && array[4] === array[5]||
                 array[6] === array[7] && array[7] === array[8]
                     ){console.log(`The winner is ${playersGo}, game will reset in 6 seconds`)
                         setTimeout(clearArray,3000)
                         setTimeout(display.manualReset, 3000)
                         console.log("clearArray Triggered")
-                        return 
+                        return true;
                          
-                    }
+                    } console.log("false");
+                            return false; 
             }
         
     );
+
+    const DrawCheck = () => {
+        if(isDraw() === true) {
+            console.log("you have Drawn!, game will reset in 6 seconds")
+                setTimeout(clearArray,3000)
+                setTimeout(display.manualReset, 3000)
+        } return console.log("no draw yet");
+    }
 
     return {Selection,};
 });
 
 //instantiate gameBoard Object 
 const game = gameboard();
-
-
-
-
 
 
 
