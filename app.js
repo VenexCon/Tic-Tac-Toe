@@ -18,6 +18,7 @@ const DisplayController = (function () {
     
     displayStatus = false; // used for ensuring the start button is clicked once.
 
+    // display functions
     const ConstructDivs = () => {buttons.addEventListener("click", (e) => {
         if(e.target.id === "startGame" && this.displayStatus === false){
             for (let i = 0; i < 9; i++){let item = document.createElement("DIV");
@@ -46,18 +47,30 @@ const DisplayController = (function () {
         cells.forEach(cell => cell.innerText ="");
     };
 
-    const announcements = () => {
+    const AnnounceWin = () => {
         announcementBox.innerText = `The Winner is ${playersGo}!, congratulations!`
+    }
+
+    const AnnounceDraw = () => {
+        announcementBox.innerText= `Both Players have Drawn!`
     }
 
     const resetDisplay =() => {
         announcementBox.innerText = `It Is ${playersGo}'s Go`;
     }
 
+    const activePlayer = () => {
+        let player = document.getElementById("active-player")
+        player.innerText = `It is ${playersGo}'s Go`
+    }
+
+
+    
+
     //modular calls
     BoardReset();
     ConstructDivs();
-    return {manualReset, announcements, resetDisplay}
+    return {manualReset, AnnounceWin, resetDisplay, AnnounceDraw, activePlayer}
     });
 
     //instantiate gameBoard
@@ -66,14 +79,11 @@ const display= DisplayController();
 
 // Player Factory called during gameBoard() function, two players currently with pre-set values.
 const player = (name, marker) => {
-    
     this.name = name;
     this.marker = marker;
     score = 0;
-    const getName = () => name;
-        return {name, marker}
+        return {name, marker,score}
 };
-
 
 
 //GameBoard controller, this controls the game logic and conditional elements.
@@ -98,19 +108,27 @@ const gameboard = (() => {
     
     const Selection = (() => {gridcontainer.addEventListener("click", (e) => {
         if (playersGo === "player1"){
+            if (e.target.innerText === "");{
             currentArray[e.target.getAttribute("index")] = player1.marker;
                 e.target.innerText = (player1.marker)
                     winnerCheck(currentArray);
                         DrawCheck();
-                            return togglePlayer()
+                            togglePlayer()
+                                display.activePlayer();
+                        return 
+                        }
 
         } else if (playersGo ="player2"){
+            if (e.target.innerText === "");{
             currentArray[e.target.getAttribute("index")] = player2.marker;
                e.target.innerText = (player2.marker)
                     winnerCheck(currentArray);
                         DrawCheck();
-                            return togglePlayer();
-                        }
+                            togglePlayer();
+                                display.activePlayer()
+                        return 
+                            
+                        }} return
                     }
                 )
             }
@@ -127,7 +145,7 @@ const gameboard = (() => {
                 array[3] === array[4] && array[4] === array[5]||
                 array[6] === array[7] && array[7] === array[8]
                     ){
-                        display.announcements();
+                        display.AnnounceWin();
                             setTimeout(clearArray,3000)
                                 setTimeout(display.manualReset, 3000)
                                     console.log("array Reset");
@@ -136,12 +154,11 @@ const gameboard = (() => {
                          
                     } return false; 
             }
-        
     );
 
     const DrawCheck = () => {
         if(isDraw() === true) {
-            console.log("you have Drawn!, game will reset in 6 seconds")
+            display.AnnounceDraw();
                 setTimeout(clearArray,3000)
                 setTimeout(display.manualReset, 3000)
         } return console.log("no draw yet");
