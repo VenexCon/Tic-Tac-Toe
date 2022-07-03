@@ -2,7 +2,7 @@
 
 <hr> 
 
-<h2> Tac-Tac-What> <h2>
+<h2> Tac-Tac-What> </h2>
 
 <p> This project was completed as part of The Odin Projects (TOP) full-stack JavaScript course, it focused on OOP and using ES6 syntax. When completeing this project I found that once getting started, alot of the logic and game-flow came naturally, but this still reeled some real challenges and unexpected errors! </p>
 
