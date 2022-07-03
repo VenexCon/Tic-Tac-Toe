@@ -19,7 +19,7 @@ const DisplayController = (function () {
     displayStatus = false; // used for ensuring the start button is clicked once.
 
     // display functions
-    const ConstructDivs = () => {buttons.addEventListener("click", (e) => {
+    (ConstructDivs = () => {buttons.addEventListener("click", (e) => {
         if(e.target.id === "startGame" && this.displayStatus === false){
             for (let i = 0; i < 9; i++){let item = document.createElement("DIV");
                 item.setAttribute("index", `${i}`);
@@ -30,9 +30,9 @@ const DisplayController = (function () {
                 }
             }
         );
-    };
+    })();
 
-    const BoardReset =() => {buttons.addEventListener("click", (e) => {
+    (BoardReset =() => {buttons.addEventListener("click", (e) => {
             if(e.target.id === "resetGame") {
                 const cells = Array.from(document.querySelectorAll(".cell"))
                     cells.forEach(cell => cell.innerText = ``)
@@ -40,7 +40,7 @@ const DisplayController = (function () {
                 };
             }
         ) 
-    };
+    })();
 
     const manualReset = function () {
         cells = document.querySelectorAll(".cell");
@@ -49,27 +49,22 @@ const DisplayController = (function () {
 
     const AnnounceWin = () => {
         announcementBox.innerText = `The Winner is ${playersGo}!, congratulations!`
-    }
+    };
 
     const AnnounceDraw = () => {
         announcementBox.innerText= `Both Players have Drawn!`
-    }
+    };
 
     const resetDisplay =() => {
         announcementBox.innerText = `Best of Luck!`;
-    }
+    };
 
     const activePlayer = () => {
         let player = document.getElementById("active-player")
         player.innerText = `It is ${playersGo}'s Go`
-    }
-
-
-    
+    };
 
     //modular calls
-    BoardReset();
-    ConstructDivs();
     return {manualReset, AnnounceWin, resetDisplay, AnnounceDraw, activePlayer}
     });
 
